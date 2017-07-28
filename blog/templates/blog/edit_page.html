@@ -9,8 +9,7 @@
 <body >
   <form action = "{% url 'blog:edit_action' %}" method = "post" >
     {% csrf_token %}
-    {% if article %}
-        <input type="hidden" name="article_id" value="{{article.id}}" />
+        <input type="hidden" name="article_id" value="{{article.id|default:'0'}}" />
         <label>
               文章标题 <input type = "text" name = "title" value = "{{article.title}}" />
         </label>
@@ -19,14 +18,6 @@
               文章内容<input type="text" name="content" value="{{article.content}}"/>
         </label>
         <br/>
-    {% else %}
-        <label>
-            文章标题<input type="text" name="title" />
-          </label>
-        <label>
-            文章内容<input type="text" name="content"/>
-        </label>
-     {% endif %}
       <input type="submit">
   </form>
 </body>
